@@ -1,12 +1,12 @@
 <template>
   <div class="rank border d-flex">
-    <div class="rank-title border border-info bg-info text-white h-100">
-      <textarea
-        type="text"
-        class="text-center w-100 text-white"
-        maxlength="55"
-        v-model="title"
-      ></textarea>
+    <div
+      class="rank-title text-white d-flex align-items-center"
+      :style="'background-color:' + bgColor"
+    >
+      <div class="text-center w-100 text-white" contenteditable="true">
+        {{ title }}
+      </div>
     </div>
     <draggable :list="itemList" :group="draggableGroupName" class="w-100">
       <img
@@ -31,6 +31,10 @@
         type: String,
         required: true
       },
+      bgColor: {
+        type: String,
+        required: true
+      },
       index: {
         type: Number,
         required: true
@@ -50,11 +54,13 @@
 <style>
   .rank {
     min-height: 100px;
+    height: inherit !important;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
   }
   .rank-title {
-    width: 20%;
+    max-width: 180px;
+    width: 180px;
     resize: none;
   }
   .rank-title textarea {

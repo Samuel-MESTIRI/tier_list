@@ -1,6 +1,6 @@
 <template>
   <div id="item-stock" class="my-5 pl-4 p-2">
-    <h2>Classe tes items du meilleur au moins bon</h2>
+    <h2 class="mb-3 mt-2">Classe tes cartes du meilleur au moins bon !</h2>
     <draggable :list="itemList" :group="draggableGroupName" class="w-100">
       <img
         v-for="item in itemList"
