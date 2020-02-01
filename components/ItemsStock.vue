@@ -1,36 +1,16 @@
 <template>
-  <div class="row">
-    <div class="col-8">
-      <h3>Draggable</h3>
-      <draggable
-        v-model="rows"
-        tag="v-layout"
-        class="row wrap fill-height align-center sortable-list"
-        style="background: grey;"
-      >
-        <div
-          v-for="row in rows"
-          :key="row.index"
-          class="sortable"
-          style="background: red"
-        >
-          <draggable
-          :list="row.items"
-          tag="v-layout"
-          :group="{ name: 'row' }"
-          class="row wrap"
-        >
-          <div
-            v-for="item in row.items"
-            :key="item.title"
-            class="row-v"
-          >
-            <div style="height: 100px;">{{ item.title }}</div>
-          </div>
-        </draggable>
-        </div>
-      </draggable>
-    </div>
+  <div class="col-12 p-5">
+    <draggable v-model="myArray" draggable=".item" group="people">
+      <div v-for="element in myArray" :key="element.id" class="item border border-dark">
+        {{element.name}}
+      </div>
+    </draggable>
+    <div class="m-5">separator</div>
+    <draggable v-model="myArray2" draggable=".item" group="people">
+      <div v-for="element in myArray2" :key="element.id" class="item border border-dark">
+        {{element.name}}
+      </div>
+    </draggable>
   </div>
 </template>
 
@@ -43,29 +23,28 @@
     },
     data() {
       return {
-        enabled: true,
-        rows: [
-          {
-            index: 1,
-            items: [
-              {
-                title: "item 1"
-              }
-            ]
-          },
-          {
-            index: 2,
-            items: [
-              {
-                title: "item 2"
-              },
-              {
-                title: "item 3"
-              }
-            ]
-          }
+        hello: 'cc',
+        myArray: [
+          {name: 'cou1'},
+          {name: 'cou2'},
+          {name: 'cou3'},
+          {name: 'cou4'},
+          {name: 'cou5'},
+          {name: 'cou6'},
+          {name: 'cou7'},
+          {name: 'cou8'}
+        ],
+        myArray2: [
+          {name: 'rr1'},
+          {name: 'rr2'},
+          {name: 'rr3'},
+          {name: 'rr4'},
+          {name: 'rr5'},
+          {name: 'rr6'},
+          {name: 'rr7'},
+          {name: 'rr8'}
         ]
-      };
+      }
     }
   }
 </script>
@@ -76,16 +55,9 @@
   }
 </style>-->
 <style scoped>
-  .buttons {
-    margin-top: 35px;
-  }
-  .row-v {
-    height: 150px;
-    width: 200px;
-  }
-  .ghost {
-    opacity: 0.5;
-    background: #c8ebfb;
+  .item {
+    width: 40%;
+    display: inline-block;
   }
 </style>
 
