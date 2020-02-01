@@ -1,18 +1,14 @@
 <template>
   <div>
-    <b-navbar toggleable="lg" type="dark" variant="primary">
-      <b-navbar-brand href="#">Mon super nom de site</b-navbar-brand>
-
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item href="#">Mon premier line</b-nav-item>
-        </b-navbar-nav>
-
-      </b-collapse>
+    <b-navbar id="navbar" toggleable="lg" type="dark">
+      <b-navbar-brand href="#">Tier list Maker</b-navbar-brand>
     </b-navbar>
   </div>
 </template>
+<style>
+#navbar {
+  background-color: #82D173 !important;
+}
+</style>
 
 

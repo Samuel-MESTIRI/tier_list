@@ -3,10 +3,10 @@
     <Navbar></Navbar>
     <div class="container">
       <div class="col-12 mt-5">
-        <Rank v-for="(rank, i) in ranks" :key="i" class="m-2" :title="rank.title" />
+        <Rank v-for="(rank, i) in ranks" :key="i" class="m-2" :title="rank.title" :draggableGroupName="draggableGroupName" :index="i" />
       </div>
       <div class="col-12">
-        <ItemsStock />
+        <ItemsStock :draggableGroupName="draggableGroupName" />
       </div>
     </div>
   </div>
@@ -25,6 +25,7 @@ export default {
   },
   data() {
     return {
+      draggableGroupName: 'draggable-item',
       ranks: [
         {title: 'rank S'},
         {title: 'rank A'},

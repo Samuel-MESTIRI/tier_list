@@ -1,6 +1,6 @@
 <template>
   <div class="rank border d-flex">
-    <div class="rank-title border border-info d-flex align-items-center bg-info text-white h-100">
+    <div class="rank-title border border-info bg-info text-white h-100">
       <textarea
         type="text"
         class="text-center w-100 text-white"
@@ -8,23 +8,40 @@
         v-model="title"
       ></textarea>
     </div>
-    <div class="item border m-2">
-      <img src="~/static/img-test.jpg">
-    </div>
+    <draggable :list="itemList" :group="draggableGroupName" class="w-100">
+      <img
+        v-for="item in itemList"
+        :key="item.id"
+        :src="item.name"
+        class="item border m-2 cursor"
+      >
+    </draggable>
   </div>
 </template>
 
 <script>
+  import draggable from 'vuedraggable'
   export default {
     props: {
       title: {
         type: String,
         required: true
+      },
+      draggableGroupName: {
+        type: String,
+        required: true
+      },
+      index: {
+        type: Number,
+        required: true
       }
+    },
+    components: {
+      draggable
     },
     data() {
       return {
-        rankTitle: 'Le super titre'
+        itemList: []
       }
     }
   }
@@ -32,7 +49,7 @@
 
 <style>
   .rank {
-    height: 100px;
+    min-height: 100px;
     box-sizing: border-box;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
   }
@@ -48,9 +65,10 @@
   .rank-title textarea:focus {
     outline-color: transparent;
   }
-  .item img {
+  .item {
     width: 80px;
     height: 80px;
+    cursor: pointer;
   }
 </style>
 
