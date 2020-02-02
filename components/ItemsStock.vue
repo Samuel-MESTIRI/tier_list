@@ -9,12 +9,21 @@
         class="item border m-2"
       >
     </draggable>
+    <button
+      class="btn add-theme-btn position-absolute text-white"
+      v-b-modal.theme-choice-modal>
+            +
+    </button>
+    <b-modal id="theme-choice-modal" size="xl" title="Choix des thèmes">
+      <ThemeChoiceModal></ThemeChoiceModal>
+    </b-modal>
   </div>
 </template>
 
 <script>
 
   import draggable from 'vuedraggable'
+  import ThemeChoiceModal from '~/components/ThemeChoiceModal.vue'
   export default {
     props: {
       draggableGroupName: {
@@ -24,6 +33,7 @@
     },
     components: {
       draggable,
+      ThemeChoiceModal
     },
     data() {
       return {
@@ -57,6 +67,17 @@
   border-left: 30px #82D173 solid !important;
   min-height: 98px;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
+}
+.add-theme-btn {
+  background-color: #82D173;
+  font-size: 6rem;
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+  line-height: 0;
+  top: 50%;
+  right: -20px;
+  transform: translate(0,-50%);
 }
 </style>
 
