@@ -1,22 +1,25 @@
 <template>
   <div id="item-stock" class="my-5 pl-4 p-2">
-    <h2 class="mb-3 mt-2">Classe tes cartes du meilleur au moins bon !</h2>
-    <draggable :list="itemList" :group="draggableGroupName" class="w-100">
-      <img
-        v-for="item in itemList"
-        :key="item.id"
-        :src="item.name"
-        class="item border m-2"
-      >
-    </draggable>
-    <button
-      class="btn add-theme-btn position-absolute text-white"
-      v-b-modal.theme-choice-modal>
-            +
-    </button>
-    <b-modal id="theme-choice-modal" size="xl" title="Choix des thèmes">
-      <ThemeChoiceModal></ThemeChoiceModal>
-    </b-modal>
+    <div v-if="themeChoosen">
+      <h2 class="mb-3 mt-2">Classe tes cartes du meilleur au moins bon !</h2>
+      <draggable :list="themeChoosen.images" :group="draggableGroupName" class="w-100">
+        <img
+          v-for="item in themeChoosen.images"
+          :key="item.id"
+          :src="item.name"
+          class="item border m-2"
+        >
+      </draggable>
+      <button
+        class="btn add-theme-btn position-absolute text-white p-0"
+        v-b-modal.theme-choice-modal>
+        <i class="material-icons">cached</i>
+      </button>
+    </div>
+    <div v-else class="d-flex justify-content-center align-items-center" style="height: 90px">
+      <button class="btn text-white p-3 font-weight-bold" v-b-modal.theme-choice-modal>Choisir un theme</button>
+    </div>
+    <ThemeChoiceModal @setNewTheme="setNewTheme"></ThemeChoiceModal>
   </div>
 </template>
 
@@ -37,26 +40,13 @@
     },
     data() {
       return {
-        itemList: [
-          {name: require('~/static/img1.jpg'), id: 1},
-          {name: require('~/static/img2.jpg'), id: 2},
-          {name: require('~/static/img3.jpg'), id: 3},
-          {name: require('~/static/img4.jpg'), id: 4},
-          {name: require('~/static/img4.jpg'), id: 5},
-          {name: require('~/static/img4.jpg'), id: 6},
-          {name: require('~/static/img4.jpg'), id: 7},
-          {name: require('~/static/img4.jpg'), id: 8},
-          {name: require('~/static/img4.jpg'), id: 9},
-          {name: require('~/static/img4.jpg'), id: 10},
-          {name: require('~/static/img4.jpg'), id: 11},
-          {name: require('~/static/img4.jpg'), id: 12},
-          {name: require('~/static/img4.jpg'), id: 13},
-          {name: require('~/static/img4.jpg'), id: 14},
-          {name: require('~/static/img4.jpg'), id: 15},
-          {name: require('~/static/img4.jpg'), id: 16},
-          {name: require('~/static/img4.jpg'), id: 17},
-          {name: require('~/static/img4.jpg'), id: 18}
-        ]
+        themeChoosen: null
+      }
+    },
+    methods: {
+      setNewTheme(value) {
+        console.log(value)
+        this.themeChoosen = value
       }
     }
   }
@@ -78,6 +68,12 @@
   top: 50%;
   right: -20px;
   transform: translate(0,-50%);
+}
+.add-theme-btn i {
+  font-size: 36px;
+}
+.btn {
+  background-color: #82D173;
 }
 </style>
 
